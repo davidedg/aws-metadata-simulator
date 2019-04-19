@@ -54,7 +54,7 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 
 	router.HandleFunc("/latest/meta-data/{category}", handle).Methods("GET")
-	router.HandleFunc("/2009-04-04/latest/meta-data/{category}", handle).Methods("GET")
+	router.HandleFunc("/2009-04-04/meta-data/{category}", handle).Methods("GET")
 
 	host := fmt.Sprintf(":%d", config.Port)
 	fmt.Printf("Listening on: %s\n", host)
