@@ -18,6 +18,7 @@ type tomlConfig struct {
 type metadata struct {
 	Port           int
 	AmiID          string
+	InstanceID     string
 	LocalHostname  string
 	ProductCodes   string
 	ReservationID  string
@@ -45,6 +46,7 @@ func main() {
 
 	m = make(map[string]string)
 	m["ami-id"] = config.Metadata.AmiID
+	m["instance-id"] = config.Metadata.InstanceID
 	m["local-hostname"] = config.Metadata.LocalHostname
 	m["reservation-id"] = config.Metadata.ReservationID
 	m["product-codes"] = config.Metadata.ProductCodes
