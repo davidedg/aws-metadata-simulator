@@ -25,7 +25,8 @@ To use a different file as the configuration give the filename as a command line
 
 ## Metadata Service Binding
 
-In Windows, you can simply add secondary IP address 169.254.169.254 and bind port 80
+In Windows, you can simply add secondary IP address 169.254.169.254 and bind port 80.
+
 In Linux, to redirect traffic from port 80 to port 8080:
 
 `sudo iptables -t nat -A OUTPUT -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1:8080`
