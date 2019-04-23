@@ -1,5 +1,15 @@
+# You can use iptables redirect rule here:
+# sudo iptables -t nat -A OUTPUT -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1:8080
 port = 8080
+# Or simply bind to port 80 if you add secondary IP address 169.254.169.254
+# port 80
 
 [metadata]
-# Put values here, like:
-# amiId = "ami-123456789"
+# Supported values:
+#AmiId = "ami-123456789"
+InstanceID = "i-123456789"
+LocalHostname = "hostname"
+#ProductCodes = ""
+#ReservationID = "r-123456789"
+#PublicHostname = "publichostname.fqdn"
+#PublicIPV4 = "1.1.1.1"
