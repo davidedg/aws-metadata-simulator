@@ -2,7 +2,7 @@
 
 This project provides an incomplete capability of simulating AWS EC2 [instance metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html). It was created to allow for testing of applications that utilize EC2 instance metadata in non-AWS environments or for testing applications in AWS against different metadata values.
 
-## Quick Install
+## Quick Install (Linux)
 
 ```
 wget https://raw.githubusercontent.com/mtnfog/aws-metadata-simulator/master/install.sh && chmod +x install.sh && ./install.sh
@@ -12,16 +12,6 @@ wget https://raw.githubusercontent.com/mtnfog/aws-metadata-simulator/master/inst
 
 `go get -u github.com/mtnfog/aws-metadata-simulator`
 
-To run:
-
-If specific values for the instance metadata are desired set those values in `metadata.toml` then run it:
-
-`go run main.go`
-
-To use a different file as the configuration give the filename as a command line argument:
-
-`go run main.go other.toml`
-
 
 ## Metadata Service Binding
 
@@ -30,6 +20,15 @@ In Windows, you can simply add secondary IP address 169.254.169.254 and bind por
 In Linux, to redirect traffic from port 80 to port 8080:
 
 `sudo iptables -t nat -A OUTPUT -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1:8080`
+
+
+## Running
+
+`go run main.go`
+
+To use a different configuration file, specify its filename as a command line argument:
+
+`go run main.go other.toml`
 
 
 ## Using
