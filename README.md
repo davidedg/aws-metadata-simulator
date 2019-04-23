@@ -6,7 +6,6 @@ This project provides an incomplete capability of simulating AWS EC2 [instance m
 
 ```
 wget https://raw.githubusercontent.com/mtnfog/aws-metadata-simulator/master/install.sh && chmod +x install.sh && ./install.sh
-sudo iptables -t nat -A OUTPUT -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1:8080
 ```
 
 ## Manual Install Steps
@@ -23,18 +22,17 @@ To use a different file as the configuration give the filename as a command line
 
 `go run main.go other.toml`
 
-To redirect traffic:
 
-`iptables -t nat -A OUTPUT -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1:8080`
+## Metadata Service Binding
 
-To use:
+In Windows, you can simply add secondary IP address 169.254.169.254 and bind port 80
+In Linux, to redirect traffic from port 80 to port 8080:
+`sudo iptables -t nat -A OUTPUT -p tcp -d 169.254.169.254 --dport 80 -j DNAT --to-destination 127.0.0.1:8080`
 
-`curl -X GET http://127.0.0.1:8080/latest/meta-data/ami-id`
 
 ## Using
 
 Now when applications make requests to the EC2 instance metadata the simulator will answer. You can test it:
 
+`Invoke-RestMethod -Method Get -Uri http://169.254.169.254/2009-04-04/meta-data/instance-id`
 `curl http://169.254.169.254/latest/meta-data/hostname`
-
-To revert back to EC2's instance metadata service you must remove the `iptables` rule.
